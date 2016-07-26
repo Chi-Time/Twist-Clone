@@ -30,7 +30,10 @@ public class Platform : MonoBehaviour
 	/// Checks the platforms current position.
 	void CheckPosition ()
 	{
-		if (transform.position.z <= -10f)
-			m_Pool.ReturnToPool (this);
+		if(m_Pool != null)
+		{
+			if (transform.position.z <= -10f)
+				m_Pool.ReturnToPool (this);
+		}
 	}
 }
