@@ -5,8 +5,14 @@ using System.Collections.Generic;
 [System.Serializable]
 public class PlatformPool
 {
-	[SerializeField] private List<GameObject> ActivePlatforms = new List<GameObject> ();
-	[SerializeField] private List<GameObject> InactivePlatforms = new List<GameObject> ();
+	[SerializeField] private List<Platform> ActivePlatforms = new List<Platform> ();
+	[SerializeField] private List<Platform> InactivePlatforms = new List<Platform> ();
+
+	public void AddToPool (Platform platform)
+	{
+		platform.AssignReferences (this);
+		InactivePlatforms.Add (platform);
+	}
 
 	public GameObject RemoveFromPool ()
 	{
@@ -15,16 +21,18 @@ public class PlatformPool
 			var temp = InactivePlatforms [0];
 			ActivePlatforms.Add (temp);
 			InactivePlatforms.Remove (temp);
+			temp.gameObject.SetActive (true);
 
-			return temp;
+			return temp.gameObject;
 		}
 
 		return null;
 	}
 
-	public void ReturnToPool (GameObject go)
+	public void ReturnToPool (Platform platform)
 	{
-		ActivePlatforms.Remove (go);
-		InactivePlatforms.Add (go);
+		ActivePlatforms.Remove (platform);
+		InactivePlatforms.Add (platform);
+		platform.gameObject.SetActive (false);
 	}
 }
