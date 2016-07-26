@@ -12,6 +12,6 @@ public class Platform : MonoBehaviour
 
 	void OnDisable ()
 	{
-		m_Pool.ReturnToPool (this.gameObject);
+		m_Pool.ReturnToPool (this);
 	}
 }
