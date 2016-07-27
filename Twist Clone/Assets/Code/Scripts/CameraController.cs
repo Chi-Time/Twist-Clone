@@ -25,11 +25,16 @@ public class CameraController : MonoBehaviour
 	/// How fast we rotate.
 	[Tooltip("How fast we rotate.")]
 	public float rotationDamping = 10.0f;
+	[Tooltip("Should the component look for a player object?")]
+	public bool FindPlayer = true;
 
 	void Start ()
 	{
-		// Assign target reference.
-		target = GameObject.FindGameObjectWithTag ("Player").transform;
+		if(FindPlayer)
+		{
+			// Assign target reference.
+			target = GameObject.FindGameObjectWithTag ("Player").transform;
+		}
 	}
 
 	void LateUpdate () 
@@ -64,8 +69,11 @@ public class CameraController : MonoBehaviour
 		// Is there no target?
 		else 
 		{
-			// Keep looking for the target and re-assign it when found.
-			target = GameObject.FindGameObjectWithTag("Player").transform;
+			if(FindPlayer)
+			{
+				// Keep looking for the target and re-assign it when found.
+				target = GameObject.FindGameObjectWithTag("Player").transform;
+			}
 		}
 	}
 }
