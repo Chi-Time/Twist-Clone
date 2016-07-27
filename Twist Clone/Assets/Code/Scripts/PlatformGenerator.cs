@@ -13,16 +13,23 @@ public class PlatformGenerator
 	/// Generates all the pool objects, names them, de-activates them and adds them to the pool.
 	public void GeneratePool (PlatformPool pool)
 	{
-		for(int i = 0; i < m_PoolSize; i++)
+		if (m_PlatformPrefab != null)
 		{
-			var temp = (GameObject)MonoBehaviour.Instantiate (m_PlatformPrefab, Vector3.zero, Quaternion.identity);
-
-			temp.SetActive (false);
-			temp.name = "Handler: " + i;
-			temp.transform.SetParent (GameObject.Find ("World").transform);
-
-			var platform = temp.GetComponent <Platform> ();
-			pool.AddToPool (platform);
+			for(int i = 0; i < m_PoolSize; i++)
+			{
+				var temp = (GameObject)MonoBehaviour.Instantiate (m_PlatformPrefab, Vector3.zero, Quaternion.identity);
+	
+				temp.SetActive (false);
+				temp.name = "Handler: " + i;
+				temp.transform.SetParent (GameObject.Find ("World").transform);
+	
+				var platform = temp.GetComponent <Platform> ();
+				pool.AddToPool (platform);
+			}
+		}
+		else
+		{
+			Debug.LogError ("No Platform Prefab assigned! Please assign a platform prefab to the component field.");
 		}
 	}
 }
