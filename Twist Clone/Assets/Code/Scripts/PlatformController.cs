@@ -33,9 +33,11 @@ public class PlatformController : MonoBehaviour
 
 				m_LastObjectPosition = m_Pool.RetrieveFromIndexPosition (0); //ActivePlatforms [0].gameObject;
 
+				print (m_LastObjectPosition.transform.GetChild (0).localScale.z);
+
 				if(temp != null)
 				{
-					temp.transform.position = new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.position.z + 6f);
+					temp.transform.position = new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.position.z + m_LastObjectPosition.transform.GetChild (0).localScale.z);
 				}
 			}
 			else
@@ -46,7 +48,7 @@ public class PlatformController : MonoBehaviour
 
 				if(temp != null)
 				{
-					temp.transform.position = new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.position.z + 6f);
+					temp.transform.position = new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.position.z + m_LastObjectPosition.transform.GetChild (0).localScale.z);
 				}
 			}
 		}
@@ -66,12 +68,12 @@ public class PlatformController : MonoBehaviour
 
 			if(direction == 0)
 			{
-				temp.transform.position = new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.position.z + 6f);
+				temp.transform.position = new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.position.z + m_LastObjectPosition.transform.GetChild (0).localScale.z);
 				temp.transform.rotation = Quaternion.Euler (new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.rotation.eulerAngles.z + 45.0f));
 			}
 			else if (direction == 1)
 			{
-				temp.transform.position = new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.position.z + 6f);
+				temp.transform.position = new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.position.z + m_LastObjectPosition.transform.GetChild (0).localScale.z);
 				temp.transform.rotation = Quaternion.Euler (new Vector3 (0.0f, 0.0f, m_LastObjectPosition.transform.rotation.eulerAngles.z - 45.0f));
 			}
 		}
