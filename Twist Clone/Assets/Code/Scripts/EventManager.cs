@@ -3,7 +3,7 @@ using System.Collections;
 
 public delegate void StatesHandler (States state);
 
-public static class EventManager : MonoBehaviour
+public static class EventManager
 {
 	public static event StatesHandler OnStateSwitched;
 
